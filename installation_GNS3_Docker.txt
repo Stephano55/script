@@ -1,0 +1,39 @@
+#création du container
+docker run -d --name gns3-gui \
+    --net=host \
+    --privileged \
+    -e DISPLAY=$DISPLAY \
+    -v /tmp/.X11-unix:/tmp/.X11-unix \
+    ubuntu:latest tail -f /dev/null
+
+#se connecter au bash du container
+docker exec -it gns3-gui bash
+
+#Installation dépendance
+apt update && apt install -y software-properties-common
+add-apt-repository ppa:gns3/ppa -y
+apt update
+apt install -y gns3-gui
+
+
+#Autoriser Docker à utiliser l’affichage X11 (Machine hôte fa ts ao @ container)
+xhost +local:docker
+
+
+#Miverina ao am bash container
+apt update && apt upgrade -y
+
+#Ajouter le PPA de GNS3
+apt install -y software-properties-common
+add-apt-repository ppa:gns3/ppa -y
+apt update
+
+
+#Installer GNS3-GUI
+apt install -y gns3-gui
+
+#lancer gns3
+gns3
+
+
+

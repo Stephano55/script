@@ -1,0 +1,11 @@
+#création nuovelle clé 
+ssh-keygen -t ed25519 -C "ton_email@example.com"
+
+#ajout de la clé à l'agent ssh
+eval "$(ssh-agent -s)"
+ssh-add ~/.ssh/id_ed25519
+
+
+#ajout de la clé à github
+cat ~/.ssh/id_ed25519.pub
+#le chaîne de caractère avôkany eo no copier-na
